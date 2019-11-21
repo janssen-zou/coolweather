@@ -12,11 +12,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"/>
+
+    <!--用于主屏幕中显示的内容 -->
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <!--FrameLayout嵌套一个ScrollView允许滚动方式查看屏幕以外的内容
      由于ScrollView内部只允许存在一个直接子布局,所有又嵌套了一个垂直方向的LinearLayout
      然后将所有布局逐个引入
-
      android:fitsSystemWindows="true"表示为系统状态栏留出空间-->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ScrollView
         android:id="@+id/weather_layout"
         android:layout_width="match_parent"
@@ -37,6 +47,14 @@
             <include layout="@layout/suggestion"/>
 
         </LinearLayout>
-
     </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        <!--用作滑动菜单中显示的内容,这里添加了用于遍历省市县数据的碎片 -->
+        <fragment
+            android:id="@+id/choose_area_fragment"
+            android:name="com.janssen.coolweather.ChooseAreaFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"/>
+    </androidx.drawerlayout.widget.DrawerLayout>
 </FrameLayout>
